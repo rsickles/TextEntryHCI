@@ -141,101 +141,90 @@ void mousePressed()
     currentTyped+=" ";
   }
 
-  if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)) //check if click in "abc"
+  if (didMouseClick(150+sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3)) //check if click in "abc"
   //update screen to display text change
   {
     if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if a
         currentTyped+="a";
     }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="b";
     }
-    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+2*sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="c";
     }
     else{ //If the user clicks on anything other than first row 
       //return to normal screen
     }
   }
-  if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)) //check if click in "def"
+  if (didMouseClick(150+2*sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "def"
     if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if d
         currentTyped+="d";
     }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="e";
     }
-    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+2*sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="f";
     }
     else{ //If the user clicks on anything other than first row 
       //return to normal screen
     }
   }
-  if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "ghi"
-    if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+  if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "ghi"
+    if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
         currentTyped+="g";
     }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="h";
     }
-    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="i";
     }
     else{ //If the user clicks on anything other than first row 
       //return to normal screen
     }
   }
-  if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "jkl"
-    if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+  if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "jkl"
+    if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
         currentTyped+="j";
     }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="k";
     }
-    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="l";
     }
     else{ //If the user clicks on anything other than first row 
       //return to normal screen
     }
   }
-   if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "mno"
-    if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){ 
-        currentTyped+="g";
+   if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "mno"
+    if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+        currentTyped+="m";
     }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
-      currentTyped+="h";
+    else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+      currentTyped+="n";
     }
-    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
-      currentTyped+="i";
+    else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+      currentTyped+="o";
     }
     else{ //If the user clicks on anything other than first row 
       //return to normal screen
     }
   }
   //NEED TO EDIT!
-  if (didMouseClick(150 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "pqrs"
-    if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ 
-        currentTyped+="g";
-    }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
-      currentTyped+="h";
-    }
-    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
-      currentTyped+="i";
-    }
-    else{ //If the user clicks on anything other than first row 
-      //return to normal screen
-    }
+  if (didMouseClick(150, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "pqrs"
+
   }
-  if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "tuv"
-    if (didMouseClick(150 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)){ 
+  if (didMouseClick(150+sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "tuv"
+    if (didMouseClick(150, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
         currentTyped+="t";
     }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="u";
     }
-    else if (150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)){
+    else if (didMouseClick(150+2*sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
       currentTyped+="v";
     }
     else{ //If the user clicks on anything other than first row 
@@ -243,19 +232,8 @@ void mousePressed()
     }
   }
   //NEED TO EDIT
-  if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "wxyz'"
-    if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ 
-        currentTyped+="g";
-    }
-    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
-      currentTyped+="h";
-    }
-    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
-      currentTyped+="i";
-    }
-    else{ //If the user clicks on anything other than first row 
-      //return to normal screen
-    }
+  if (didMouseClick(150+2*sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "wxyz'"
+
   }
 //    else if (currentLetter=='`' & currentTyped.length()>0) //if `, treat that as a delete command
 //      currentTyped = currentTyped.substring(0, currentTyped.length()-1);
