@@ -26,6 +26,9 @@ float ax, ay, az; //The x,y,z accelerometer values (updated for you)
 
 //Variables for my silly implementation. You can delete these:
 char currentLetter = 'a';
+boolean started = false;
+boolean lettersClicked = false;
+String letterPanel = "";
 
 //You can modify anything in here. This is just a basic implementation.
 void setup()
@@ -57,75 +60,192 @@ void draw()
     return;
   }
 
-  if (startTime==0 & !mousePressed)
-  {
-    fill(255);
+  if(!lettersClicked) {
+    if (startTime==0 & !mousePressed)
+    {
+      fill(255);
+      textAlign(CENTER);
+      text("Click to start time!", 280, 150); //display this messsage until the user clicks!
+    }
+  
+    if (startTime==0 & mousePressed)
+    {
+      nextTrial(); //start the trials!
+    }
+  
+    if (startTime!=0)
+    {
+      //you will need something like the next 10 lines in your code. Output does not have to be within the 2 inch area!
+      textAlign(LEFT); //align the text left
+      fill(128);
+      text("Phrase " + (currTrialNum+1) + " of " + totalTrialNum, 70, 50); //draw the trial count
+      fill(255);
+      text("Target:   " + currentPhrase, 70, 100); //draw the target string
+      text("Entered:  " + currentTyped + "|", 70, 140); //draw what the user has entered thus far 
+      fill(255, 0, 0);
+      rect(200, 600, 200, 200); //drag next button
+      fill(255);
+      text("NEXT > ", 250, 700); //draw next label
+  
+  
+      //my draw code
+      /*textAlign(CENTER);
+      text("" + currentLetter, 200+sizeOfInputArea/2, 200+sizeOfInputArea/3); //draw current letter
+      fill(255, 0, 0);
+      rect(200, 200+sizeOfInputArea/2, sizeOfInputArea/2, sizeOfInputArea/2); //draw left red button
+      fill(0, 255, 0);
+      rect(200+sizeOfInputArea/2, 200+sizeOfInputArea/2, sizeOfInputArea/2, sizeOfInputArea/2); //draw right green button
+      */
+      stroke(153);
+      fill(255);
+      // first row
+      rect(150, 200, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3);
+      
+      // second row
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      
+      // third row
+      rect(150, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+       
+       
+      fill(0);
+      textAlign(CENTER);
+      // spacebar
+      text("_", 150 + sizeOfInputArea/6, 200 + sizeOfInputArea/6);
+      text("abc", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6);
+      text("def", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6);
+      
+      text("ghi", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("jkl", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("mno", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+  
+      text("pqrs", 150 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("tuv", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("wxyz'", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6);
+    }
+  } else {
+   /* stroke(153);
+    fill(100);
+    rect(150,200+2*sizeOfInputArea/3, sizeOfInputArea, sizeOfInputArea/3);
+    fill(0, 255, 0);
     textAlign(CENTER);
-    text("Click to start time!", 280, 150); //display this messsage until the user clicks!
-  }
-
-  if (startTime==0 & mousePressed)
-  {
-    nextTrial(); //start the trials!
-  }
-
-  if (startTime!=0)
-  {
-    //you will need something like the next 10 lines in your code. Output does not have to be within the 2 inch area!
+    text("Back", 150 + sizeOfInputArea/2, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6);
+    */
+       //you will need something like the next 10 lines in your code. Output does not have to be within the 2 inch area!
     textAlign(LEFT); //align the text left
     fill(128);
     text("Phrase " + (currTrialNum+1) + " of " + totalTrialNum, 70, 50); //draw the trial count
     fill(255);
     text("Target:   " + currentPhrase, 70, 100); //draw the target string
-    text("Entered:  " + currentTyped, 70, 140); //draw what the user has entered thus far 
-    fill(255, 0, 0);
-    rect(200, 600, 200, 200); //drag next button
-    fill(255);
-    text("NEXT > ", 250, 700); //draw next label
+    text("Entered:  " + currentTyped + "|", 70, 140); //draw what the user has entered thus far 
+    if(letterPanel == "abc") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("a", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("b", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("c", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+    }  
+    if(letterPanel == "def") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("d", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("e", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("f", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+    } 
+    if(letterPanel == "ghi") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("g", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("h", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("i", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+    }     
+    if(letterPanel == "jkl") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("j", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("k", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("l", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+    }    
+    if(letterPanel == "mno") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("m", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("n", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("o", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+    }   
+    if(letterPanel == "pqrs") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      rect(150+3*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("p", 150 + sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("q", 150+sizeOfInputArea/4 + sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("r", 150+2*sizeOfInputArea/4+ sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("s", 150+3*sizeOfInputArea/4+ sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
 
-
-    //my draw code
-    /*textAlign(CENTER);
-    text("" + currentLetter, 200+sizeOfInputArea/2, 200+sizeOfInputArea/3); //draw current letter
-    fill(255, 0, 0);
-    rect(200, 200+sizeOfInputArea/2, sizeOfInputArea/2, sizeOfInputArea/2); //draw left red button
-    fill(0, 255, 0);
-    rect(200+sizeOfInputArea/2, 200+sizeOfInputArea/2, sizeOfInputArea/2, sizeOfInputArea/2); //draw right green button
-    */
-    stroke(153);
-    fill(255);
-    // first row
-    rect(150, 200, sizeOfInputArea/3, sizeOfInputArea/3);
-    rect(150+sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3);
-    rect(150+2*sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3);
-    
-    // second row
-    rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
-    rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
-    rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
-    
-    // third row
-    rect(150, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
-    rect(150+sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
-    rect(150+2*sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
-     
-     
-    fill(0);
-    textAlign(CENTER);
-    // spacebar
-    text("_", 150 + sizeOfInputArea/6, 200 + sizeOfInputArea/6);
-    text("abc", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6);
-    text("def", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6);
-    
-    text("ghi", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
-    text("jkl", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
-    text("mno", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
-
-    text("pqrs", 150 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6);
-    text("tuv", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6);
-    text("wxyz'", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6);
+    }  
+    if(letterPanel == "tuv") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("t", 150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("u", 150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("v", 150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+    }     
+    if(letterPanel == "wxyz") {
+      stroke(153);
+      fill(255);
+      rect(150, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      rect(150+sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      rect(150+2*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      rect(150+3*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3);
+      fill(0);
+      textAlign(CENTER);
+      text("w", 150 + sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("x", 150+sizeOfInputArea/4 + sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("y", 150+2*sizeOfInputArea/4+ sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+      text("z", 150+3*sizeOfInputArea/4+ sizeOfInputArea/8, 200+sizeOfInputArea/3 + sizeOfInputArea/6);
+    }     
   }
-  
 }
 
 boolean didMouseClick(float x, float y, float w, float h) //simple function to do hit testing
@@ -137,7 +257,7 @@ boolean didMouseClick(float x, float y, float w, float h) //simple function to d
 void mousePressed()
 {
 
-  if (didMouseClick(200, 200+sizeOfInputArea/2, sizeOfInputArea/2, sizeOfInputArea/2)) //check if click in left button
+  /*if (didMouseClick(200, 200+sizeOfInputArea/2, sizeOfInputArea/2, sizeOfInputArea/2)) //check if click in left button
   {
     currentLetter --;
     if (currentLetter<'_') //wrap around to z
@@ -159,7 +279,192 @@ void mousePressed()
       currentTyped = currentTyped.substring(0, currentTyped.length()-1);
     else if (currentLetter!='`') //if not any of the above cases, add the current letter to the typed string
       currentTyped+=currentLetter;
+  } */
+  if(started) {
+    if(!lettersClicked) {
+      if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)) //check if click space
+      {
+        currentTyped+=" ";
+      }
+      if (didMouseClick(150+sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3))
+      {
+        lettersClicked = true;
+        letterPanel = "abc";
+      }
+      
+      if (didMouseClick(150+2*sizeOfInputArea/3, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "def"
+        lettersClicked = true;
+        letterPanel = "def";  
+      }
+      
+      if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "ghi"
+        lettersClicked = true;
+        letterPanel = "ghi";  
+        
+      }
+      
+      if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "jkl"
+        lettersClicked = true;
+        letterPanel = "jkl";  
+      }
+      
+      if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "mno"
+        lettersClicked = true;
+        letterPanel = "mno";  
+      }
+      
+      if (didMouseClick(150, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "pqrs"
+        lettersClicked = true;
+        letterPanel = "pqrs";
+      }
+      
+      if (didMouseClick(150+sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "tuv"
+        lettersClicked = true;
+        letterPanel = "tuv";
+      }
+      
+      if (didMouseClick(150+2*sizeOfInputArea/3, 200+2*sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if click in "wxyz'"
+        lettersClicked = true;
+        letterPanel = "wxyz";
+      }
+    } else {
+      if( letterPanel == "abc") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+          currentTyped+="a";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="b";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="c";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      }
+      if( letterPanel == "def") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+          currentTyped+="d";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="e";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="f";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      }
+      if( letterPanel == "ghi") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+          currentTyped+="g";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="h";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="i";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      }
+      if( letterPanel == "jkl") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+          currentTyped+="j";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="k";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="l";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      }      
+      if( letterPanel == "mno") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+          currentTyped+="m";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="n";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="o";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      }    
+    
+      if( letterPanel == "pqrs") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){ 
+          currentTyped+="p";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){
+          currentTyped+="q";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){
+          currentTyped+="r";
+        }
+        else if (didMouseClick(150+3*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){
+          currentTyped+="s";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      }    
+    
+    
+      if( letterPanel == "tuv") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+          currentTyped+="t";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="u";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/3, 200+sizeOfInputArea/3, sizeOfInputArea/3, sizeOfInputArea/3)){
+          currentTyped+="v";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      } 
+ 
+      if( letterPanel == "wxyz") {
+        if (didMouseClick(150, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){ 
+          currentTyped+="w";
+        }
+        else if (didMouseClick(150+sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){
+          currentTyped+="x";
+        }
+        else if (didMouseClick(150+2*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){
+          currentTyped+="y";
+        }
+        else if (didMouseClick(150+3*sizeOfInputArea/4, 200+sizeOfInputArea/3, sizeOfInputArea/4, sizeOfInputArea/3)){
+          currentTyped+="z";
+        }
+        else{ //If the user clicks on anything other than first row 
+          lettersClicked = false;
+          letterPanel = "";
+        }  
+      }       
+      lettersClicked = false;
+      letterPanel = "";
+    }
+    
   }
+  
+  
 
   //You are allowed to have a next button outside the 2" area
   if (didMouseClick(200, 600, 200, 200)) //check if click is in next button
@@ -210,6 +515,7 @@ void nextTrial()
   {
     System.out.println("Trials beginning! Starting timer..."); //output we're done
     startTime = millis(); //start the timer!
+    started = true;
   }
   else
   {
