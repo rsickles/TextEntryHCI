@@ -141,7 +141,8 @@ void mousePressed()
     currentTyped+=" ";
   }
 
-  if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)) //check if click in "abc", update screen to display "a,b,c" in different cols
+  if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)) //check if click in "abc"
+  //update screen to display text change
   {
     if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if a
         currentTyped+="a";
@@ -156,7 +157,106 @@ void mousePressed()
       //return to normal screen
     }
   }
-
+  if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)) //check if click in "def"
+    if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ //check if d
+        currentTyped+="d";
+    }
+    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+      currentTyped+="e";
+    }
+    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+      currentTyped+="f";
+    }
+    else{ //If the user clicks on anything other than first row 
+      //return to normal screen
+    }
+  }
+  if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "ghi"
+    if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+        currentTyped+="g";
+    }
+    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="h";
+    }
+    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="i";
+    }
+    else{ //If the user clicks on anything other than first row 
+      //return to normal screen
+    }
+  }
+  if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "jkl"
+    if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+        currentTyped+="j";
+    }
+    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="k";
+    }
+    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="l";
+    }
+    else{ //If the user clicks on anything other than first row 
+      //return to normal screen
+    }
+  }
+   if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "mno"
+    if (didMouseClick(150 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){ 
+        currentTyped+="g";
+    }
+    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="h";
+    }
+    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="i";
+    }
+    else{ //If the user clicks on anything other than first row 
+      //return to normal screen
+    }
+  }
+  //NEED TO EDIT!
+  if (didMouseClick(150 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "pqrs"
+    if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+        currentTyped+="g";
+    }
+    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+      currentTyped+="h";
+    }
+    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+      currentTyped+="i";
+    }
+    else{ //If the user clicks on anything other than first row 
+      //return to normal screen
+    }
+  }
+  if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "tuv"
+    if (didMouseClick(150 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)){ 
+        currentTyped+="t";
+    }
+    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="u";
+    }
+    else if (150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)){
+      currentTyped+="v";
+    }
+    else{ //If the user clicks on anything other than first row 
+      //return to normal screen
+    }
+  }
+  //NEED TO EDIT
+  if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200+2*sizeOfInputArea/3 + sizeOfInputArea/6)) //check if click in "wxyz'"
+    if (didMouseClick(150, 200, sizeOfInputArea/3, sizeOfInputArea/3)){ 
+        currentTyped+="g";
+    }
+    else if (didMouseClick(150+sizeOfInputArea/3 + sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+      currentTyped+="h";
+    }
+    else if (didMouseClick(150+2*sizeOfInputArea/3+ sizeOfInputArea/6, 200 + sizeOfInputArea/6)){
+      currentTyped+="i";
+    }
+    else{ //If the user clicks on anything other than first row 
+      //return to normal screen
+    }
+  }
 //    else if (currentLetter=='`' & currentTyped.length()>0) //if `, treat that as a delete command
 //      currentTyped = currentTyped.substring(0, currentTyped.length()-1);
 
